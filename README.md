@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/logo.jpg" alt="Nyomi Logo" width="128" />
+  <img src="./assets/logo.jpg" alt="Nyomi Logo" width="128" />
   <h1>Nyomi</h1>
   <p>A standalone fork of <a href="https://github.com/komikku-app/komikku">Komikku</a> (<code>app.nyomi</code>) focused on refined navigation ergonomics, AMOLED theming, and UI polish.</p>
 </div>
@@ -13,13 +13,13 @@
 
 ## Screenshots
 
-| Library | Appearance | More & Branding |
-| :---: | :---: | :---: |
-| <img src="assets/screenshots/library.jpg" alt="Library screen" width="240" /> | <img src="assets/screenshots/appearance.jpg" alt="Appearance settings" width="240" /> | <img src="assets/screenshots/more.jpg" alt="More menu with Nyomi logo" width="240" /> |
-
-| Updates | History |
-| :---: | :---: |
-| <img src="assets/screenshots/updates.jpg" alt="Updates feed" width="240" /> | <img src="assets/screenshots/history.jpg" alt="Reading history" width="240" /> |
+<p align="center">
+  <img src="./assets/screenshots/library.jpg" width="18%" />
+  <img src="./assets/screenshots/appearance.jpg" width="18%" />
+  <img src="./assets/screenshots/more.jpg" width="18%" />
+  <img src="./assets/screenshots/updates.jpg" width="18%" />
+  <img src="./assets/screenshots/history.jpg" width="18%" />
+</p>
 
 ## Download
 
