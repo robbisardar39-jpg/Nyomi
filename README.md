@@ -4,7 +4,7 @@
   <p>A standalone fork of <a href="https://github.com/komikku-app/komikku">Komikku</a> (<code>app.nyomi</code>) focused on refined navigation ergonomics, AMOLED theming, and UI polish.</p>
 </div>
 
-## Highlights & Changes from Upstream (`v1.14.2-nyomi`)
+## Highlights & Changes from Upstream (`v1.14.3-nyomi`)
 
 - **Standalone Package (`app.nyomi`):** Installs independently alongside Komikku without package or data conflicts.
 - **Floating Dock Clearance:** Refined bottom padding and scroll clearance across Library, Updates, History, and More views so the floating navigation dock never crowds content.
@@ -23,7 +23,7 @@
 
 ## Download
 
-Download the latest signed `arm64-v8a` release APK from the [Releases](https://github.com/robbisardar39-jpg/Nyomi/releases) page (for example, [`v1.14.2-nyomi`](https://github.com/robbisardar39-jpg/Nyomi/releases/tag/v1.14.2-nyomi)).
+Download the latest signed `arm64-v8a` release APK from the [Releases](https://github.com/robbisardar39-jpg/Nyomi/releases) page (for example, [`v1.14.3-nyomi`](https://github.com/robbisardar39-jpg/Nyomi/releases/tag/v1.14.3-nyomi)).
 
 ## License
 
