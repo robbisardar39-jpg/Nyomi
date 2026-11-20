@@ -14,7 +14,7 @@
 ## Screenshots
 
 <p align="center">
-  <img src="./assets/screenshots/library.jpg?v=20261120" width="18%" />
+  <img src="./assets/screenshots/library-v2.jpg" width="18%" />
   <img src="./assets/screenshots/appearance.jpg" width="18%" />
   <img src="./assets/screenshots/more.jpg" width="18%" />
   <img src="./assets/screenshots/updates.jpg" width="18%" />
