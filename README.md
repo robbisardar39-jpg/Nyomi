@@ -23,7 +23,7 @@
 
 ## Download
 
-Download the latest signed `arm64-v8a` release APK from the [Releases](https://github.com/robbisardar39-jpg/Nyomi/releases) page (for example, [`v1.14.1-nyomi.1`](https://github.com/robbisardar39-jpg/Nyomi/releases/tag/v1.14.1-nyomi.1)).
+Download the latest signed `arm64-v8a` release APK from the [Releases](https://github.com/robbisardar39-jpg/Nyomi/releases) page (for example, [`v1.14.2`](https://github.com/robbisardar39-jpg/Nyomi/releases/tag/v1.14.2)).
 
 ## License
 
