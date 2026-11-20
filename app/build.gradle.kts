@@ -29,7 +29,7 @@ android {
         applicationId = "app.nyomi"
 
         versionCode = 81
-        versionName = "1.14.1"
+        versionName = "1.14.3"
 
         buildConfigField("String", "COMMIT_COUNT", "\"${getCommitCount()}\"")
         buildConfigField("String", "COMMIT_SHA", "\"${getGitSha()}\"")

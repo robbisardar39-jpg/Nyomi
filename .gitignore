@@ -21,3 +21,6 @@ local.properties
 /app/google-services.json
 *.jks
 app/standard/preview/*
+
+# Local Google Drive OAuth secrets
+app/src/main/assets/client_secrets.json
