@@ -94,6 +94,7 @@ class WebtoonRecyclerView @JvmOverloads constructor(
         atLastPosition = visibleItemCount > 0 && lastVisibleItemPosition == totalItemCount - 1
         atFirstPosition = firstVisibleItemPosition == 0
 
+        android.util.Log.d("NyomiTapLag", "scrollState=$state manual=$isManuallyScrolling first=$firstVisibleItemPosition last=$lastVisibleItemPosition")
         if (state == SCROLL_STATE_IDLE) {
             isManuallyScrolling = false
         }
@@ -242,6 +243,7 @@ class WebtoonRecyclerView @JvmOverloads constructor(
     inner class GestureListener : GestureDetectorWithLongTap.Listener() {
 
         override fun onSingleTapConfirmed(ev: MotionEvent): Boolean {
+            android.util.Log.d("NyomiTapLag", "singleTapConfirmed: skipManual=$tapDuringManualScroll x=${ev.x} y=${ev.y}")
             if (!tapDuringManualScroll) {
                 tapListener?.invoke(ev)
             }

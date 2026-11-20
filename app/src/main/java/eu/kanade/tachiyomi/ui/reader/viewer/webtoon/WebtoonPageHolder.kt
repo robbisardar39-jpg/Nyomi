@@ -200,6 +200,7 @@ class WebtoonPageHolder(
                 Pair(source, isAnimated)
             }
             withUIContext {
+                android.util.Log.d("NyomiTapLag", "setImageUI: page=${page?.index} animated=$isAnimated")
                 frame.setImage(
                     source,
                     isAnimated,
@@ -259,6 +260,7 @@ class WebtoonPageHolder(
      * Called when the image is decoded and going to be displayed.
      */
     private fun onImageDecoded() {
+        android.util.Log.d("NyomiTapLag", "onImageDecoded: page=${page?.index}")
         progressContainer.isVisible = false
         removeErrorLayout()
     }

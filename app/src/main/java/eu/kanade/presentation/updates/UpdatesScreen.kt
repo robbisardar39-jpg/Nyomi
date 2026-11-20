@@ -107,7 +107,7 @@ fun UpdateScreen(
                 onMultiDeleteClicked = onMultiDeleteClicked,
             )
         },
-        snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
+        snackbarHost = { SnackbarHost(hostState = snackbarHostState, modifier = Modifier.padding(bottom = 74.dp)) },
     ) { contentPadding ->
         when {
             state.isLoading -> LoadingScreen(Modifier.padding(contentPadding))

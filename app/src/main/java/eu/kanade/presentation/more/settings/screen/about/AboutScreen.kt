@@ -30,7 +30,6 @@ import eu.kanade.presentation.util.LocalBackPress
 import eu.kanade.presentation.util.Screen
 import eu.kanade.tachiyomi.BuildConfig
 import eu.kanade.tachiyomi.data.updater.AppUpdateChecker
-import eu.kanade.tachiyomi.ui.more.ComingUpdatesScreen
 import eu.kanade.tachiyomi.ui.more.NewUpdateScreen
 import eu.kanade.tachiyomi.ui.more.WhatsNewScreen
 import eu.kanade.tachiyomi.util.CrashLogUtil
@@ -77,7 +76,6 @@ class AboutScreen : Screen() {
 
         // KMK -->
         var isCheckingWhatsNew by remember { mutableStateOf(false) }
-        var isCheckingWhatsComing by remember { mutableStateOf(false) }
         // KMK <--
 
         Scaffold(
@@ -183,46 +181,6 @@ class AboutScreen : Screen() {
                         },
                     )
                 }
-
-                if (isReleaseBuildType || isDebugBuildType) {
-                    item {
-                        TextPreferenceWidget(
-                            title = stringResource(KMR.strings.whats_coming),
-                            widget = {
-                                AnimatedVisibility(visible = isCheckingWhatsComing) {
-                                    CircularProgressIndicator(
-                                        modifier = Modifier.size(28.dp),
-                                        strokeWidth = 3.dp,
-                                    )
-                                }
-                            },
-                            onPreferenceClick = {
-                                if (!isCheckingWhatsComing) {
-                                    scope.launch {
-                                        isCheckingWhatsComing = true
-
-                                        checkVersion(
-                                            context = context,
-                                            onAvailableUpdate = { result ->
-                                                val updateScreen = ComingUpdatesScreen(
-                                                    versionName = result.release.version,
-                                                    changelogInfo = result.release.info,
-                                                    releaseLink = result.release.releaseLink,
-                                                    downloadLink = result.release.downloadLink,
-                                                )
-                                                navigator.push(updateScreen)
-                                            },
-                                            onFinish = {
-                                                isCheckingWhatsComing = false
-                                            },
-                                            peekIntoPreview = true,
-                                        )
-                                    }
-                                }
-                            },
-                        )
-                    }
-                }
                 // KMK <--
 
                 item {
@@ -230,7 +188,7 @@ class AboutScreen : Screen() {
                         title = stringResource(MR.strings.help_translate),
                         onPreferenceClick = {
                             uriHandler.openUri(
-                                "https://hosted.weblate.org/engage/komikku-app/",
+                                "https://github.com/robbisardar39-jpg/Nyomi/issues",
                             )
                         },
                     )
@@ -246,7 +204,7 @@ class AboutScreen : Screen() {
                 item {
                     TextPreferenceWidget(
                         title = stringResource(MR.strings.privacy_policy),
-                        onPreferenceClick = { uriHandler.openUri("https://komikku-app.github.io/privacy/") },
+                        onPreferenceClick = { uriHandler.openUri("https://github.com/robbisardar39-jpg/Nyomi#readme") },
                     )
                 }
 
@@ -260,7 +218,7 @@ class AboutScreen : Screen() {
                         LinkIcon(
                             label = stringResource(MR.strings.website),
                             icon = Icons.Outlined.Public,
-                            url = "https://komikku-app.github.io",
+                            url = "https://github.com/robbisardar39-jpg/Nyomi",
                         )
                         LinkIcon(
                             label = "Discord",
@@ -285,7 +243,7 @@ class AboutScreen : Screen() {
                         LinkIcon(
                             label = "GitHub",
                             icon = CustomIcons.Github,
-                            url = "https://github.com/komikku-app",
+                            url = "https://github.com/robbisardar39-jpg/Nyomi",
                         )
                     }
                 }
