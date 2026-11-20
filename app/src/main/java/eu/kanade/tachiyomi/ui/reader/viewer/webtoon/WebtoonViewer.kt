@@ -337,6 +337,7 @@ class WebtoonViewer(
      * Scrolls up by [scrollDistance].
      */
     private fun scrollUp() {
+        android.util.Log.d("NyomiTapLag", "scrollUp: smooth=${config.usePageTransitions} dist=$scrollDistance")
         if (config.usePageTransitions) {
             recycler.smoothScrollBy(0, -scrollDistance)
         } else {
@@ -361,6 +362,7 @@ class WebtoonViewer(
      */
     /* [EXH] private */
     fun scrollDown() {
+        android.util.Log.d("NyomiTapLag", "scrollDown: smooth=${config.usePageTransitions} tapByPage=$tapByPage")
         // SY -->
         if (!isContinuous && tapByPage) {
             val currentPage = currentPage

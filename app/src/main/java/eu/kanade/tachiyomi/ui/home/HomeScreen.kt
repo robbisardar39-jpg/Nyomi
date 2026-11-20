@@ -10,6 +10,7 @@ import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.RowScope
@@ -155,22 +156,31 @@ object HomeScreen : Screen() {
                                 enter = slideInVertically(initialOffsetY = { it }) + fadeIn(),
                                 exit = slideOutVertically(targetOffsetY = { it }) + fadeOut(),
                             ) {
+                                val isDarkDock = isSystemInDarkTheme()
+                                val dockTint = if (isDarkDock) {
+                                    MaterialTheme.colorScheme.surface.copy(alpha = 0.42f)
+                                } else {
+                                    MaterialTheme.colorScheme.surface.copy(alpha = 0.56f)
+                                }
+                                val dockBorderColor = if (isDarkDock) {
+                                    Color.White.copy(alpha = 0.14f)
+                                } else {
+                                    Color.Black.copy(alpha = 0.08f)
+                                }
                                 Box(
                                     modifier = Modifier
                                         .navigationBarsPadding()
-                                        .padding(horizontal = 32.dp, vertical = 4.dp)
+                                        .padding(horizontal = 32.dp, vertical = 6.dp)
                                         .clip(CircleShape)
                                         .hazeEffect(
                                             state = hazeState,
                                             style = HazeStyle(
                                                 backgroundColor = Color.Transparent,
-                                                tint = HazeTint(
-                                                    if (isSystemInDarkTheme()) Color.White.copy(alpha = 0.12f)
-                                                    else Color.Black.copy(alpha = 0.08f)
-                                                ),
-                                                blurRadius = 28.dp,
+                                                tint = HazeTint(dockTint),
+                                                blurRadius = 24.dp,
                                             ),
-                                        ),
+                                        )
+                                        .border(1.dp, dockBorderColor, CircleShape),
                                 ) {
                                     NavigationBar(
                                         modifier = Modifier.height(46.dp),

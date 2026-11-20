@@ -14,7 +14,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
+import androidx.compose.ui.input.nestedscroll.NestedScrollSource
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.unit.dp
+import dev.chrisbanes.haze.HazeState
+import dev.chrisbanes.haze.hazeSource
 import eu.kanade.core.preference.PreferenceMutableState
 import eu.kanade.tachiyomi.ui.library.LibraryItem
 import kotlinx.coroutines.delay
@@ -25,10 +32,10 @@ import tachiyomi.domain.library.model.LibraryManga
 import tachiyomi.presentation.core.components.material.PullRefresh
 import kotlin.time.Duration.Companion.seconds
 
-import androidx.compose.ui.unit.dp
-
 @Composable
 fun LibraryContent(
+    hazeState: HazeState? = null,
+    onScrollDirectionChanged: ((Boolean) -> Unit)? = null,
     categories: List<Category>,
     // KMK -->
     activeCategoryIndex: Int,
@@ -51,21 +58,35 @@ fun LibraryContent(
     getColumnsForOrientation: (Boolean) -> PreferenceMutableState<Int>,
     getItemsForCategory: (Category) -> List<LibraryItem>,
 ) {
+    val scrollDirectionConnection = remember(onScrollDirectionChanged) {
+        object : NestedScrollConnection {
+            override fun onPreScroll(available: Offset, source: NestedScrollSource): Offset {
+                if (available.y < -8f) {
+                    onScrollDirectionChanged?.invoke(false)
+                } else if (available.y > 8f) {
+                    onScrollDirectionChanged?.invoke(true)
+                }
+                return Offset.Zero
+            }
+        }
+    }
+
     Column(
-        modifier = Modifier.padding(
-            top = contentPadding.calculateTopPadding(),
-            start = contentPadding.calculateStartPadding(LocalLayoutDirection.current),
-            end = contentPadding.calculateEndPadding(LocalLayoutDirection.current),
-        ),
+        modifier = Modifier
+            .then(if (hazeState != null) Modifier.hazeSource(state = hazeState) else Modifier)
+            .nestedScroll(scrollDirectionConnection)
+            .padding(
+                start = contentPadding.calculateStartPadding(LocalLayoutDirection.current),
+                end = contentPadding.calculateEndPadding(LocalLayoutDirection.current),
+            ),
     ) {
         val pagerState = rememberPagerState(currentPage) { categories.size }
 
         val scope = rememberCoroutineScope()
         var isRefreshing by remember(pagerState.currentPage) { mutableStateOf(false) }
 
-        if (showPageTabs && categories.isNotEmpty() && (categories.size > 1 || !categories.first().isSystemCategory)) {
-            LaunchedEffect(categories) {
-                // KMK -->
+        if (categories.isNotEmpty()) {
+            LaunchedEffect(categories, activeCategoryIndex) {
                 val targetPage = when {
                     categories.isEmpty() -> 0
                     activeCategoryIndex != pagerState.currentPage -> activeCategoryIndex.coerceAtMost(categories.size - 1)
@@ -75,18 +96,11 @@ fun LibraryContent(
                 if (targetPage != pagerState.currentPage) {
                     pagerState.scrollToPage(targetPage)
                 }
-                // KMK <--
             }
-            LibraryTabs(
-                categories = categories,
-                pagerState = pagerState,
-                getItemCountForCategory = getItemCountForCategory,
-                onTabItemClick = {
-                    scope.launch {
-                        pagerState.animateScrollToPage(it)
-                    }
-                },
-            )
+        }
+
+        LaunchedEffect(pagerState.currentPage) {
+            onChangeCurrentPage(pagerState.currentPage)
         }
 
         PullRefresh(
@@ -96,16 +110,23 @@ fun LibraryContent(
                 val started = onRefresh()
                 if (!started) return@PullRefresh
                 scope.launch {
-                    // Fake refresh status but hide it after a second as it's a long running task
                     isRefreshing = true
                     delay(1.seconds)
                     isRefreshing = false
                 }
             },
+            modifier = if (hazeState != null) {
+                Modifier.hazeSource(state = hazeState)
+            } else {
+                Modifier
+            },
         ) {
             LibraryPager(
                 state = pagerState,
-                contentPadding = PaddingValues(bottom = contentPadding.calculateBottomPadding() + 84.dp),
+                contentPadding = PaddingValues(
+                    top = contentPadding.calculateTopPadding() + 112.dp,
+                    bottom = contentPadding.calculateBottomPadding() + 84.dp,
+                ),
                 hasActiveFilters = hasActiveFilters,
                 selection = selection,
                 searchQuery = searchQuery,
@@ -124,10 +145,6 @@ fun LibraryContent(
                 onLongClickManga = onToggleRangeSelection,
                 onClickContinueReading = onContinueReadingClicked,
             )
-        }
-
-        LaunchedEffect(pagerState.currentPage) {
-            onChangeCurrentPage(pagerState.currentPage)
         }
     }
 }
