@@ -31,6 +31,10 @@ Official community group for Nyomi on Android. Get the latest releases, share fe
 
 https://www.facebook.com/groups/4561202414102077
 
+## Support page 
+
+https://www.facebook.com/profile.php?id=61596583389524
+
 
 ## License
 
