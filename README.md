@@ -25,6 +25,13 @@
 
 Download the latest signed `arm64-v8a` release APK from the [Releases](https://github.com/robbisardar39-jpg/Nyomi/releases) page (for example, [`v1.14.4`](https://github.com/robbisardar39-jpg/Nyomi/releases/tag/v1.14.4)).
 
+## Support group 
+
+Official community group for Nyomi on Android. Get the latest releases, share feedback and bug reports, suggest improvements, and hang out with other manga, manhwa, and webtoon readers. Be respectful, keep things helpful, and enjoy reading!
+
+https://www.facebook.com/groups/4561202414102077
+
+
 ## License
 
 Licensed under the Apache License, Version 2.0. See [LICENSE](LICENSE) for details.
