@@ -218,7 +218,8 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="eu.kanade.google.oauth" />
+                    android:scheme="com.googleusercontent.apps.774254693634-7nrm83qj8fnlillel43253tk09ufotvs"
+                    android:path="/oauth2redirect" />
             </intent-filter>
         </activity>
 

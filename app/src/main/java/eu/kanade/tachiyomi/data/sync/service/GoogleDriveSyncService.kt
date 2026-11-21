@@ -245,7 +245,7 @@ class GoogleDriveSyncService(context: Context, json: Json, syncPreferences: Sync
 class GoogleDriveService(private val context: Context) {
     var driveService: Drive? = null
     companion object {
-        const val REDIRECT_URI = "http://localhost"
+        const val REDIRECT_URI = "com.googleusercontent.apps.774254693634-7nrm83qj8fnlillel43253tk09ufotvs:/oauth2redirect"
     }
     private val syncPreferences = Injekt.get<SyncPreferences>()
 

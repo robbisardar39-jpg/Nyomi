@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.animation.LinearInterpolator
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.annotation.ColorInt
 import androidx.core.app.ActivityCompat
 import androidx.core.view.doOnLayout
@@ -62,7 +63,7 @@ class WebtoonViewer(
     /**
      * Distance to scroll when the user taps on one side of the recycler view.
      */
-    private val scrollDistance = activity.resources.displayMetrics.heightPixels * 3 / 4
+    private val scrollDistance = activity.resources.displayMetrics.heightPixels * 2 / 3
 
     /**
      * Layout manager of the recycler view.
@@ -339,7 +340,7 @@ class WebtoonViewer(
     private fun scrollUp() {
         android.util.Log.d("NyomiTapLag", "scrollUp: smooth=${config.usePageTransitions} dist=$scrollDistance")
         if (config.usePageTransitions) {
-            recycler.smoothScrollBy(0, -scrollDistance)
+            recycler.smoothScrollBy(0, -scrollDistance, FastOutSlowInInterpolator(), 220)
         } else {
             recycler.scrollBy(0, -scrollDistance)
         }
@@ -385,7 +386,7 @@ class WebtoonViewer(
     private fun scrollDownBy() {
         // SY <--
         if (config.usePageTransitions) {
-            recycler.smoothScrollBy(0, scrollDistance)
+            recycler.smoothScrollBy(0, scrollDistance, FastOutSlowInInterpolator(), 220)
         } else {
             recycler.scrollBy(0, scrollDistance)
         }
