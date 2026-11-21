@@ -340,7 +340,7 @@ class WebtoonViewer(
     private fun scrollUp() {
         android.util.Log.d("NyomiTapLag", "scrollUp: smooth=${config.usePageTransitions} dist=$scrollDistance")
         if (config.usePageTransitions) {
-            recycler.smoothScrollBy(0, -scrollDistance, FastOutSlowInInterpolator(), 220)
+            recycler.smoothScrollBy(0, -scrollDistance, FastOutSlowInInterpolator(), 300)
         } else {
             recycler.scrollBy(0, -scrollDistance)
         }
@@ -386,7 +386,7 @@ class WebtoonViewer(
     private fun scrollDownBy() {
         // SY <--
         if (config.usePageTransitions) {
-            recycler.smoothScrollBy(0, scrollDistance, FastOutSlowInInterpolator(), 220)
+            recycler.smoothScrollBy(0, scrollDistance, FastOutSlowInInterpolator(), 300)
         } else {
             recycler.scrollBy(0, scrollDistance)
         }
